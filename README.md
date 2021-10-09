@@ -15,7 +15,3 @@
 ## What files are in the project folder / GitHub repository?
  
  - README.md: Describes what the project is about.
-
-## How can you run code that appears in your folder / GitHub repository?
-- This repository is currently public and can be viewed by anyone.
-- Open Rstudio, pull the current version of code, and run it on your local computer. Push changes to GitHub for others to see.
