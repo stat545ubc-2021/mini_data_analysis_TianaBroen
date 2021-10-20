@@ -29,3 +29,5 @@
      2. Milestone1_TianaBroen.Rmd: R Markdown File
      3. Milestone1_TianaBroen.md: Markdown file
  - Milestone_2 Folder: Contains all files submitted for Milestone 2.
+     1. Milestone2_TB.Rmd: R-markdown file with code for competion of Milestone 2.
+     2. Milestone2_TB.md: Knitted Rmd document (knitted to *github_document*)
