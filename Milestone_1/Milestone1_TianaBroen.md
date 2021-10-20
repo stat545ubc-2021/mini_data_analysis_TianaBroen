@@ -2,7 +2,7 @@
 title: "Milestone1_TianaBroen"
 author: "Tiana Broen, 16922171"
 date: "09/10/2021"
-output: html_document
+output: github_document
 ---
 
 ```{r echo=FALSE}
