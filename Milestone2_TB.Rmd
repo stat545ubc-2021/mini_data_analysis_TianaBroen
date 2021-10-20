@@ -5,6 +5,10 @@ date: "19/10/2021"
 output: github_document
 ---
 
+```{r load-packages, include=FALSE}
+library(datateachr)
+library(tidyverse)
+```
 ### Introduction: This file contains all components of Milestone 2 of the Mini Data Analysis for STAT 545A. In this code, the data *apt_buildings* is further examined and cleaned to produce a reproducible and clear report using R Markdown. The dataset being used is from the *datateachr* package by Hayley Boyce and Jordan Bourak.
 
 # Task 1: Process and summarize your data
