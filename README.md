@@ -1,7 +1,7 @@
-### STAT 545A: Mini Data-Analysis
-#### Tiana Broen
+## STAT 545A: Mini Data-Analysis
+### Tiana Broen
 
-#### What is this project?
+### What is this project?
  - An independent mini-analysis using semi-tidy datasets that were designed for education purposes
  - We are given an option of seven data sets to work with from the *datateachr* package by Hayley Boyce and Jordan Bourak
  - The aim is to create clean, reproducible, and coherent analysis
@@ -31,7 +31,7 @@
      3. Reading and writing data as separate files.
 -Files in this milestone: Milestone3_TB.Rmd, Milestone3_TB.md
 
-#### What files are in the project folder / GitHub repository?
+### What files are in the project folder / GitHub repository?
  - README.md: Describes what the project is about.
  - Milestone_1 Folder: Contains all files submitted for Milestone 1.
      1. Milestone 1_TB.R: Raw R code
