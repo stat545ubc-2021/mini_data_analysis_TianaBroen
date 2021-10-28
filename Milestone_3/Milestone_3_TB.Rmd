@@ -69,7 +69,7 @@ model_1
 ### 2.2: Produce something relevant from your fitted model.
 
 ```{r}
-glance(model_1)
+(glance(model_1))
 ```
 I chose to use the *broom* function *glance*. This gives me several pieces of information related to the model fit. Specifically, I was interested in the *r.squared* column. The *r.squared* column tells me how fitted the data is to the regression line; in this case, my data is not very closely fitted (0.009). So, this indicates that the relationship between number of barrier free accessible units and year built is not represented well by my above model. In the future, I should create a better fitting model (i.e. exclude outliers, look at correlation coefficients to understand my data better) to get more meaningful results.
 
@@ -80,15 +80,28 @@ dir.create(here::here("C:\\Users\\tiana\\OneDrive\\Desktop\\output"))
 
 ### 3.1 (5 points)
 ```{r}
-#My summary table from Milestone 2, exercise 1.2
-df <- as_tibble(apt_buildings)
+# Reformatting my summary table from Milestone 2, exercise 1.2
+apt_buildings_na <- filter(apt_buildings, !is.na(year_built))
+apt_buildings_na <- filter(apt_buildings_na, !is.na(no_barrier_free_accessible_units))
+apt_buildings_na
 
-df.summary <- df %>%
-  select(no_barrier_free_accessible_units, year_built) %>% # select variables to summarise
-  summary() %>% as.tibble(.name_repair= "unique")
-df.summary <- as.data.frame(describe(df.summary))
+sumstat <- apt_buildings_na %>%
+    select(
+        `Year Built` = year_built,
+        `Number of Accessible Units` = no_barrier_free_accessible_units
+        ) %>%
+  summarise_each(funs(mean, sd, min, max)) %>%
+    gather(key, value, everything()) %>% 
+    separate(key, into = c("variable", "stat"), sep = "_") %>%
+    spread(stat, value) %>%
+    select(variable, mean, sd, min, max) %>%
+    mutate_each(funs(round(., 1)), -variable)
+sumstat
 
-write_csv(df.summary, here::here("output", "df_summary_exported_file.csv"))
+sumstat_df <- as.data.frame(describe(sumstat)) #formatting sumstat_df as a dataframe to export to .csv file
+sumstat_df
+
+write_csv(sumstat_df, here::here("output", "sumstat_df_exported_file.csv"))
 dir(here::here("output"))
 ```
 
@@ -98,12 +111,6 @@ saveRDS(model_1, here::here("output", "model_1.rds"))
 readRDS(here::here("output", "model_1.rds"))
 dir(here::here("output"))
 ```
-## Main README (3 points)
-Minimum contents of the README file:
-
-- In a sentence or two, explains what this repository is, so that future-you or someone else stumbling on your repository can be oriented to the repository.
-- In a sentence or two (or more??), briefly explains how to engage with the repository. You can assume the person reading knows the material from STAT 545A. Basically, if a visitor to your repository wants to explore your project, what should they know?
-
 ## File and Folder structure (3 points)
 
 You should have at least four folders in the top level of your repository: one for each milestone, and one output folder. If there are any other folders, these are explained in the main README.
