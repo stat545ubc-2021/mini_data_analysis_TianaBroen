@@ -108,8 +108,9 @@ dir(here::here("output"))
 ### 3.2: Write your model object from Exercise 2 to an R binary file (an RDS), and load it again.
 ```{r}
 saveRDS(model_1, here::here("output", "model_1.rds"))
-readRDS(here::here("output", "model_1.rds"))
+Model_1_rds <- readRDS(here::here("output", "model_1.rds"))
 dir(here::here("output"))
+Model_1_rds
 ```
 ## Output (2 points)
 
