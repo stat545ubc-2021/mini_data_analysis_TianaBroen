@@ -1,6 +1,6 @@
 ## STAT 545A: Mini Data-Analysis
-### Tiana Broen (tbroen@mail.ubc.ca)
-#### Welcome to my mini data-analysis! This repository contains all files and work pertaining to Milestone 1, 2, and 3 of the mini data anlaysis assignment. Each folder contains .rmd code, which can be run in rstudio, as well as a .md file for clearly viewing all of my results. See below for more detailed descriptions of each milestone.
+#### Tiana Broen (tbroen@mail.ubc.ca)
+##### Welcome to my mini data-analysis! This repository contains all files and work pertaining to Milestone 1, 2, and 3 of the mini data anlaysis assignment. Each folder contains .rmd code, which can be run in rstudio, as well as a .md file for clearly viewing all of my results. See below for more detailed descriptions of each milestone.
 
 ### What is this project?
  - An independent mini-analysis using semi-tidy datasets that were designed for education purposes
