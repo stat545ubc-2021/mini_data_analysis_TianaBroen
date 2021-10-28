@@ -111,14 +111,6 @@ saveRDS(model_1, here::here("output", "model_1.rds"))
 readRDS(here::here("output", "model_1.rds"))
 dir(here::here("output"))
 ```
-## File and Folder structure (3 points)
-
-You should have at least four folders in the top level of your repository: one for each milestone, and one output folder. If there are any other folders, these are explained in the main README.
-
-Each milestone document is contained in its respective folder, and nowhere else. 
-
-Every level-1 folder (that is, the ones stored in the top level, like "Milestone1" and "output") has a `README` file, explaining in a sentence or two what is in the folder, in plain language (it's enough to say something like "This folder contains the source for Milestone 1").
-
 ## Output (2 points)
 
 All output is recent and relevant: 
