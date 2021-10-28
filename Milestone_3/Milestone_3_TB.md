@@ -248,22 +248,3 @@ Model_1_rds
     ## Coefficients:
     ## (Intercept)   year_built  
     ##   -389.2305       0.2031
-
-## Output (2 points)
-
-All output is recent and relevant:
-
--   All Rmd files have been `knit`ted to their output, and all data
-    files saved from Exercise 3 above appear in the `output` folder.
--   All of these output files are up-to-date – that is, they haven’t
-    fallen behind after the source (Rmd) files have been updated.
--   There should be no relic output files. For example, if you were
-    knitting an Rmd to html, but then changed the output to be only a
-    markdown file, then the html file is a relic and should be deleted.
-
-Our recommendation: delete all output files, and re-knit each
-milestone’s Rmd file, so that everything is up to date and relevant.
-
-PS: there’s a way where you can run all project code using a single
-command, instead of clicking “knit” three times. More on this in STAT
-545B!
