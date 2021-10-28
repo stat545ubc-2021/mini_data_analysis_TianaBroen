@@ -5,10 +5,6 @@ date: "27/10/2021"
 output: github_document
 ---
 
-```{r, message = FALSE}
-library(datateachr) #specific data I am analyzing: "apt_buildings"
-library(tidyverse)
-```
 ##### Introduction: This file contains all components of Milestone 3 of the Mini Data Analysis for STAT 545A. In this code, the data *apt_buildings* is further examined and cleaned to produce a reproducible and clear report using R Markdown. The dataset being used is from the *datateachr* package by Hayley Boyce and Jordan Bourak.
 
 The two research questions I will be examining from Milestone 2 are:  
@@ -61,88 +57,52 @@ I chose to reorder the factor "century built". I chose to reorder this in by inf
  
 ## Exercise 2: Modelling
 
-### 2.0 (no points)
+### 2.0: Pick a research question, and pick a variable of interest that's relevant to the research question.
+**Research question**: Is there a relationship between the accessibility of apartments and the year they were built? 
+**Variable of interest**: My variable of interest is: "number of barrier free accessible units".
 
-Pick a research question, and pick a variable of interest (we'll call it "Y") that's relevant to the research question. Indicate these.
+### 2.1: Fit a model or run a hypothesis test that provides insight on this variable with respect to the research question. 
+```{r}
+model_1 <- lm(formula = no_barrier_free_accessible_units ~ year_built, data = apt_buildings)
+model_1
+```
+### 2.2: Produce something relevant from your fitted model.
 
-<!-------------------------- Start your work below ---------------------------->
+```{r}
+glance(model_1)
+```
+I chose to use the *broom* function *glance*. This gives me several pieces of information related to the model fit. Specifically, I was interested in the *r.squared* column. The *r.squared* column tells me how fitted the data is to the regression line; in this case, my data is not very closely fitted (0.009). So, this indicates that the relationship between number of barrier free accessible units and year built is not represented well by my above model. In the future, I should create a better fitting model (i.e. exclude outliers, look at correlation coefficients to understand my data better) to get more meaningful results.
 
-**Research Question**: FILL_THIS_IN
+## Exercise 3: Reading and writing data
+```{r}
+dir.create(here::here("C:\\Users\\tiana\\OneDrive\\Desktop\\output"))
+```
 
-**Variable of interest**: FILL_THIS_IN
+### 3.1 (5 points)
+```{r}
+#My summary table from Milestone 2, exercise 1.2
+df <- as_tibble(apt_buildings)
 
-<!----------------------------------------------------------------------------->
+df.summary <- df %>%
+  select(no_barrier_free_accessible_units, year_built) %>% # select variables to summarise
+  summary() %>% as.tibble(.name_repair= "unique")
+df.summary <- as.data.frame(describe(df.summary))
 
-## 2.1 (5 points)
+write_csv(df.summary, here::here("output", "df_summary_exported_file.csv"))
+dir(here::here("output"))
+```
 
-Fit a model or run a hypothesis test that provides insight on this variable with respect to the research question. Store the model object as a variable, and print its output to screen. We'll omit having to justify your choice, because we don't expect you to know about model specifics in STAT 545. 
-
-- **Note**: It's OK if you don't know how these models/tests work. Here are some examples of things you can do here, but the sky's the limit. 
-    - You could fit a model that makes predictions on Y using another variable, by using the `lm()` function.
-    - You could test whether the mean of Y equals 0 using `t.test()`, or maybe the mean across two groups are different using `t.test()`, or maybe the mean across multiple groups are different using `anova()` (you may have to pivot your data for the latter two).
-    - You could use `lm()` to test for significance of regression.
-
-<!-------------------------- Start your work below ---------------------------->
-
-
-<!----------------------------------------------------------------------------->
-
-## 2.2 (5 points)
-
-Produce something relevant from your fitted model: either predictions on Y, or a single value like a regression coefficient or a p-value. 
-
-- Be sure to indicate in writing what you chose to produce. 
-- Your code should either output a tibble (in which case you should indicate the column that contains the thing you're looking for), or the thing you're looking for itself.
-- Obtain your results using the `broom` package if possible. If your model is not compatible with the broom function you're needing, then you can obtain your results by some other means, but first indicate which broom function is not compatible. 
-  
-<!-------------------------- Start your work below ---------------------------->
-
-
-<!----------------------------------------------------------------------------->
-
-
-
-# Exercise 3: Reading and writing data
-
-Get set up for this exercise by making a folder called `output` in the top level of your project folder / repository. You'll be saving things there. 
-
-## 3.1 (5 points)
-
-Take a summary table that you made from Milestone 2 (Exercise 1.2), and write it as a csv file in your `output` folder. Use the `here::here()` function.
-
-- **Robustness criteria**: You should be able to move your Mini Project repository / project folder to some other location on your computer, or move this very Rmd file to another location within your project repository / folder, and your code should still work.
-- **Reproducibility criteria**: You should be able to delete the csv file, and remake it simply by knitting this Rmd file. 
-  
-<!-------------------------- Start your work below ---------------------------->
-
-
-<!----------------------------------------------------------------------------->
-
-## 3.2 (5 points)
-
-Write your model object from Exercise 2 to an R binary file (an RDS), and load it again. Be sure to save the binary file in your `output` folder. Use the functions `saveRDS()` and `readRDS()`. 
-
-- The same robustness and reproducibility criteria as in 3.1 apply here.
-
-<!-------------------------- Start your work below ---------------------------->
-
-
-<!----------------------------------------------------------------------------->
-
-# Tidy Repository
-
-Now that this is your last milestone, your entire project repository should be organized. Here are the criteria we're looking for.
-
+### 3.2: Write your model object from Exercise 2 to an R binary file (an RDS), and load it again.
+```{r}
+saveRDS(model_1, here::here("output", "model_1.rds"))
+readRDS(here::here("output", "model_1.rds"))
+dir(here::here("output"))
+```
 ## Main README (3 points)
-
-There should be a file named `README.md` at the top level of your repository. Its contents should automatically appear when you visit the repository on GitHub. 
-
 Minimum contents of the README file:
 
 - In a sentence or two, explains what this repository is, so that future-you or someone else stumbling on your repository can be oriented to the repository.
 - In a sentence or two (or more??), briefly explains how to engage with the repository. You can assume the person reading knows the material from STAT 545A. Basically, if a visitor to your repository wants to explore your project, what should they know?
-
-Once you get in the habit of making README files, and seeing more README files in other projects, you'll wonder how you ever got by without them! They are tremendously helpful.
 
 ## File and Folder structure (3 points)
 
@@ -163,11 +123,3 @@ All output is recent and relevant:
 Our recommendation: delete all output files, and re-knit each milestone's Rmd file, so that everything is up to date and relevant. 
 
 PS: there's a way where you can run all project code using a single command, instead of clicking "knit" three times. More on this in STAT 545B!
-
-## Error-free code (1 point)
-
-This Milestone 3 document knits error-free. (We've already graded this aspect for Milestone 1 and 2)
-
-## Tagged release (1 point)
-
-You've tagged a release for Milestone 3. (We've already graded this aspect for Milestone 1 and 2)
