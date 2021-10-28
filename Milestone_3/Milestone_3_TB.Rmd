@@ -4,7 +4,15 @@ author: "Tiana Broen, 16922171"
 date: "27/10/2021"
 output: github_document
 ---
-
+```{r load packages, include=FALSE}
+library(datateachr)
+library(tidyverse)
+library(ggplot2)
+library(broom)
+library(here)
+library(dplyr)
+library(psych)
+```
 ##### Introduction: This file contains all components of Milestone 3 of the Mini Data Analysis for STAT 545A. In this code, the data *apt_buildings* is further examined and cleaned to produce a reproducible and clear report using R Markdown. The dataset being used is from the *datateachr* package by Hayley Boyce and Jordan Bourak.
 
 The two research questions I will be examining from Milestone 2 are:  
@@ -14,8 +22,10 @@ The two research questions I will be examining from Milestone 2 are:
 ## Exercise 1: Special Data Types
 
 I will use the following plot from Milestone 2 to complete tasks 1 & 2. The plot below examines the relationship between the year an apartment building was built and the number of accessible units in that building. In order to make this graph more applicable for this exercise, I have grouped the "year built" variable into "century built" and transformed it into a factor.
-```{r}
+```{r, warning=FALSE}
 apt_buildings_1 <- apt_buildings[c('year_built', 'no_barrier_free_accessible_units')] #new dataframe with only the variables I need for this exercise
+apt_buildings_1
+
 apt_buildings_1$century_built <- apt_buildings_1$year_built
 apt_buildings_1 <- filter(apt_buildings_1, !is.na(year_built))
 apt_buildings_1 <- filter(apt_buildings_1, !is.na(no_barrier_free_accessible_units))
@@ -35,7 +45,7 @@ apt_buildings_1$century_built <- as.factor(apt_buildings_1$century_built)
 ```
 
 ### Task 1: Produce a new plot that reorders a factor in your original plot.
-```{r}
+```{r, warning=FALSE}
 (ggplot_2 <- apt_buildings_1 %>%
   mutate(century_built = fct_infreq(century_built)) %>%
   ggplot(aes(x=century_built, y=no_barrier_free_accessible_units, group=century_built)) +
@@ -45,7 +55,7 @@ apt_buildings_1$century_built <- as.factor(apt_buildings_1$century_built)
 I chose to reorder the factor "century built". I chose to reorder this in by infrequency, meaning I ordered this factor by the frequency in which it appears (i.e. most apartment buildings are built between 1951-2000, the fewest were built in the 1800-1850). This adds another layer of understanding to this plot as you can tell by a glance that although most apartment buildings were built in the 90s, more buildings were built in the 2000s with accessibility in mind.
 
 ### Task 2: Produce a new plot that groups some factor levels together into an "other" category.
-```{r}
+```{r, warning=FALSE}
 (ggplot_3 <- apt_buildings_1 %>%
    mutate(century_built = fct_infreq(century_built)) %>%
   mutate(century_built = fct_lump(century_built, n=1, w=NULL, other_level = "Other", ties.method = "min")) %>%
@@ -74,12 +84,12 @@ model_1
 I chose to use the *broom* function *glance*. This gives me several pieces of information related to the model fit. Specifically, I was interested in the *r.squared* column. The *r.squared* column tells me how fitted the data is to the regression line; in this case, my data is not very closely fitted (0.009). So, this indicates that the relationship between number of barrier free accessible units and year built is not represented well by my above model. In the future, I should create a better fitting model (i.e. exclude outliers, look at correlation coefficients to understand my data better) to get more meaningful results.
 
 ## Exercise 3: Reading and writing data
-```{r}
+```{r, warning=FALSE}
 dir.create(here::here("C:\\Users\\tiana\\OneDrive\\Desktop\\output"))
 ```
 
 ### 3.1 (5 points)
-```{r}
+```{r, warning=FALSE}
 # Reformatting my summary table from Milestone 2, exercise 1.2
 apt_buildings_na <- filter(apt_buildings, !is.na(year_built))
 apt_buildings_na <- filter(apt_buildings_na, !is.na(no_barrier_free_accessible_units))
