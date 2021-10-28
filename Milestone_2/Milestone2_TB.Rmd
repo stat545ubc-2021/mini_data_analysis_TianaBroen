@@ -9,15 +9,15 @@ output: github_document
 library(datateachr)
 library(tidyverse)
 ```
-### Introduction: This file contains all components of Milestone 2 of the Mini Data Analysis for STAT 545A. In this code, the data *apt_buildings* is further examined and cleaned to produce a reproducible and clear report using R Markdown. The dataset being used is from the *datateachr* package by Hayley Boyce and Jordan Bourak.
+##### Introduction: This file contains all components of Milestone 2 of the Mini Data Analysis for STAT 545A. In this code, the data *apt_buildings* is further examined and cleaned to produce a reproducible and clear report using R Markdown. The dataset being used is from the *datateachr* package by Hayley Boyce and Jordan Bourak.
 
-# Task 1: Process and summarize your data
-## 1.1: Write the 4 research questions you defined in milestone 1.
+## Task 1: Process and summarize your data
+### 1.1: Write the 4 research questions you defined in milestone 1.
 The four research questions I have chosen to explore using the "apt_buildings" dataset are:
-1. *What property type (i.e. private, TCHC, Social Housing) is most likely to allow pets?*
-2. *Is there a relationship between the accessibility of apartments and the year they were built?*
-3. *What property type (i.e. private, TCHC, Social Housing) would be most appropriate for a family (i.e. including child play area, parking, guest parking, laundry room, and storage)*
-4. *Are apartments that allow pets also more likely to offer parking?*
+1. What property type (i.e. private, TCHC, Social Housing) is most likely to allow pets?
+2. Is there a relationship between the accessibility of apartments and the year they were built?
+3. What property type (i.e. private, TCHC, Social Housing) would be most appropriate for a family (i.e. including child play area, parking, guest parking, laundry room, and storage)*
+4. Are apartments that allow pets also more likely to offer parking?
 
 ## 1.2: Choose one task from **Summarizing** and one task from **Graphing** to complete for each of the above four research questions.
 ### Research Question #1: "What property type is most likely to allow pets?"
