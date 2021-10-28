@@ -1,5 +1,6 @@
 ## STAT 545A: Mini Data-Analysis
-### Tiana Broen
+### Tiana Broen (tbroen@mail.ubc.ca)
+#### Welcome to my mini data-analysis! This repository contains all files and work pertaining to Milestone 1, 2, and 3 of the mini data anlaysis assignment. Each folder contains .rmd code, which can be run in rstudio, as well as a .md file for clearly viewing all of my results. See below for more detailed descriptions of each milestone.
 
 ### What is this project?
  - An independent mini-analysis using semi-tidy datasets that were designed for education purposes
@@ -43,3 +44,6 @@
 -Milestone_3 Folder: Contains all files submitted for Milestone 3.
      1. Milestone3_TB.Rmd: R-markdown file with code for completion of Milestone 3.
      2. Milestone3_TB.md: Knitted Rmd document with code for completion of Milestone 3 (knitted to *github_document*).
+-Output Folder: Contains two files from exercises in milestone 3:
+     1. model_1_rds: non-binary file containing model 1 from milestone 3
+     2. sumstat_df_exported_file.csv: summary statistics from milestone 2 exported as a .csv file for exercise in milesone 3.
